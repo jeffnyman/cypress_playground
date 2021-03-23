@@ -1,0 +1,20 @@
+{
+  "name": "cypress_playground",
+  "version": "1.0.0",
+  "description": "Learning Examples for Cypress Automation",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress run",
+    "cy:run": "cypress run"
+  },
+  "keywords": [
+    "testing",
+    "cypress",
+    "automation"
+  ],
+  "author": "Jeff Nyman",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^6.8.0"
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cypress Playground</title>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+        <meta content="no-cache" http-equiv="Pragma" />
+        <meta content="0" http-equiv="Expires" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="Medley of Automated Checking Exercises" name="description" />
+        <meta content="Jeff Nyman" name="author">
+        <link rel="stylesheet" href="vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/jquery-ui.min.css">
+        <link rel="stylesheet" href="vendor/normalize.css">
+        <link href="css/site.css" rel="stylesheet" />
+        <link href="css/font.css" rel="stylesheet" />
+        <link href="css/menu.css" rel="stylesheet" />
+        <link href="css/practice.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <h1 class="site-logo"><a id="cp-link" href="index.html">Cypress Playground</a> <span class="subtitle">Automation<br />Learning<br />Site</span></h1>
+        </header>
+        <section>
+            <article id="practice">
+                <img src="images/practice.png" id="site-image" alt="Practice Image" />
+
+                <h1>Practice Page - Alerts and Confirms</h1>
+
+                <p><a class="site-button" href="practice.html">Back to Practice Page</a></p>
+
+                <hr />
+
+                <p>JavaScript alerts are always interesting. The first set of buttons below have the logic inside the button element. The buttons can also change based on the action.</p>
+
+                <div class="practice-block">
+                    <div id="javascript_buttons">
+                        <label class="site-label">JavaScript Buttons:</label>
+                        <input id="alertButton" type="button" value="Alert" onclick="alert('Alert!')" />
+                        <input id="confirmButton" type="button" onclick="this.value = confirm('Confirmation Message Received')" value="Confirm" />
+                        <input id="promptButton" type="button" onclick='this.value = prompt("Favorite Color", "blue")' value="Prompt" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="practice-block">
+                    <p>The next buttons are relying on JavaScript but not inlined in the element. The buttons here do not change, but rather the "Result" area is provided some text to display.</p>
+
+                    <ul style="list-style-type: none">
+                        <li><input type="button" class="site-button" value="JS Alert" onclick="jsAlert()" /></li>
+                        <li><input type="button" class="site-button" value="JS Confirm" onclick="jsConfirm()" /></li>
+                        <li><input type="button" class="site-button" value="JS Prompt" onclick="jsPrompt()" /></li>
+                    </ul>
+
+                    <span style="color: #ffffff;">Result:</span>
+                    <p id='result' style='color: #ffff00;'></p>
+                </div>
+
+            </article>
+        </section>
+        <footer>
+            <p>Cypress Playground, by <a href="http://testerstories.com/" id="blog">Jeff Nyman</a>. For use with <a href="https://www.cypress.io/" id="app">Cypress</a> and other automation tools.</p>
+        </footer>
+
+        <div id="areas">
+            <p id="navlist" class="open">+</p>
+            <h2>Pages</h2>
+            <ul class="nav">
+                <li><a href="planets.html" id="planets">Planets</a></li>
+                <li><a href="stardates.html" id="stardates">Stardates</a></li>
+                <li><a href="warp.html" id="warp">Warp Travel</a></li>
+                <li><a href="warcraft.html" id="warp">Warcraft</a></li>
+                <li><a href="practice.html" id="warp">Practice</a></li>
+            </ul>
+        </div>
+
+        <script src="vendor/jquery-3.6.0-min.js"></script>
+        <script src="vendor/jquery-ui.min.js"></script>
+        <script src="vendor/jquery.validate.min.js"></script>
+        <script src="vendor/bootstrap.min.js"></script>
+        <script src="js/site.js"></script>
+        <script src="js/practice.js"></script>
+    </body>
+</html>

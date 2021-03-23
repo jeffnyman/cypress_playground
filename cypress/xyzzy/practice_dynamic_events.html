@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cypress Playground</title>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+        <meta content="no-cache" http-equiv="Pragma" />
+        <meta content="0" http-equiv="Expires" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="Medley of Automated Checking Exercises" name="description" />
+        <meta content="Jeff Nyman" name="author">
+        <link rel="stylesheet" href="vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/jquery-ui.min.css">
+        <link rel="stylesheet" href="vendor/normalize.css">
+        <link href="css/site.css" rel="stylesheet" />
+        <link href="css/font.css" rel="stylesheet" />
+        <link href="css/menu.css" rel="stylesheet" />
+        <link href="css/practice.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <h1 class="site-logo"><a id="cp-link" href="index.html">Cypress Playground</a> <span class="subtitle">Automation<br />Learning<br />Site</span></h1>
+        </header>
+        <section>
+            <article id="practice">
+                <img src="images/practice.png" id="site-image" alt="Practice Image" />
+
+                <h1>Practice Page - Dynamic Events</h1>
+
+                <p><a class="site-button" href="practice.html">Back to Practice Page</a></p>
+
+                <div class="practice-block">
+                    <label class="site-label">DOM Additions</label>
+                    <p>Each of the buttons below will add text to the DOM tree, with some form of delay.</p>
+
+                    <div>
+                        <button id="long">Start modifying subtree with 5 node operations and 1000 ms delay between them</button>
+                        <br />
+                        <button id="quick">Start modifying subtree with 20 node operations and 100 ms delay between them</button>
+                        <br />
+                        <button id="stale">Start modifying and then update child div</button>
+                        <br />
+                        <button id="fade">Start fading in text</button>
+                        <br />
+                        <div id="container1">
+                            <div id="container2"></div>
+                        </div>
+                        <div id="container3">
+                            <span id="spanContainer" style="opacity: 0">Into the Fade</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="practice-block">
+                    <label class="site-label">Dynamic Load of Page Element</label>
+                    <p>This section handles an element on the page that is initially hidden.</p>
+
+                    <div id="start">
+                        <button>Start</button>
+                    </div>
+
+                    <div id="finish" style="display:none">
+                        <span id="spanContainer">Hidden Element Revealed</span>
+                    </div>
+                </div>
+
+                <div class="practice-block">
+                    <p>This one handles an element that is rendered after the fact.</p>
+
+                    <div id="start-render">
+                        <button>Start</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <footer>
+            <p>Cypress Playground, by <a href="http://testerstories.com/" id="blog">Jeff Nyman</a>. For use with <a href="https://www.cypress.io/" id="app">Cypress</a> and other automation tools.</p>
+        </footer>
+
+        <div id="areas">
+            <p id="navlist" class="open">+</p>
+            <h2>Pages</h2>
+            <ul class="nav">
+                <li><a href="planets.html" id="planets">Planets</a></li>
+                <li><a href="stardates.html" id="stardates">Stardates</a></li>
+                <li><a href="warp.html" id="warp">Warp Travel</a></li>
+                <li><a href="warcraft.html" id="warp">Warcraft</a></li>
+                <li><a href="practice.html" id="warp">Practice</a></li>
+            </ul>
+        </div>
+
+        <script src="vendor/jquery-3.6.0-min.js"></script>
+        <script src="vendor/jquery-ui.min.js"></script>
+        <script src="vendor/jquery.validate.min.js"></script>
+        <script src="vendor/bootstrap.min.js"></script>
+        <script src="js/site.js"></script>
+        <script src="js/practice.js"></script>
+
+        <script>
+            $(function() {
+                $('#start button').click(function() {
+                    $('#start').hide();
+                    $('#start').before("<div id='loading'>Loading... <img src='images/ajax-loader.gif'></div>");
+                    setTimeout(function() {
+                        $('#loading').hide();
+                        $('#finish').show();
+                    }, 5000 );
+                });
+            });
+        </script>
+
+        <script>
+            $(function() {
+                $('#start-render button').click(function() {
+                    $('#start-render').hide();
+                    $('#start-render').before("<div id='loading'>Loading... <img src='images/ajax-loader.gif'></div>");
+                    setTimeout(function() {
+                        $('#loading').hide();
+                        $('#loading').before("<div id='finish-render' style='display:none'>Rendered Element Revealed</div>")
+                        $('#finish-render').show();
+                    }, 5000 );
+                });
+            });
+        </script>
+    </body>
+</html>

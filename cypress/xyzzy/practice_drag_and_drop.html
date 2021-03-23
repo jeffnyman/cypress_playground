@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cypress Playground</title>
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+        <meta content="no-cache" http-equiv="Pragma" />
+        <meta content="0" http-equiv="Expires" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="Medley of Automated Checking Exercises" name="description" />
+        <meta content="Jeff Nyman" name="author">
+        <link rel="stylesheet" href="vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/jquery-ui.min.css">
+        <link rel="stylesheet" href="vendor/normalize.css">
+        <link href="css/site.css" rel="stylesheet" />
+        <link href="css/font.css" rel="stylesheet" />
+        <link href="css/menu.css" rel="stylesheet" />
+        <link href="css/practice.css" rel="stylesheet" />
+        <style>
+            .example-parent {
+                border: 2px solid #DFA612;
+                color: black;
+                display: flex;
+                font-family: sans-serif;
+                font-weight: bold;
+            }
+
+            .example-origin {
+                flex-basis: 100%;
+                flex-grow: 1;
+                padding: 10px;
+            }
+
+            .example-draggable {
+                background-color: #4AAE9B;
+                font-weight: normal;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                padding: 10px;
+            }
+
+            .example-dropzone {
+                background-color: #6DB65B;
+                flex-basis: 100%;
+                flex-grow: 1;
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="site-logo"><a id="cp-link" href="index.html">Cypress Playground</a> <span class="subtitle">Automation<br />Learning<br />Site</span></h1>
+        </header>
+        <section>
+            <article id="practice">
+                <img src="images/practice.png" id="site-image" alt="Practice Image" />
+
+                <h1>Practice Page - Drag and Drop</h1>
+
+                <p><a class="site-button" href="practice.html">Back to Practice Page</a></p>
+
+                <p>The first boxes (colored) do not use the built-in draggable attribute. The second boxes (grey) do. The JavaScript for the second set of boxes is located within the page.</p>
+
+                <div class="practice-block">
+                    <div id="draggable" class="ui-widget-content">
+                        <p>Drag me to my blue target</p>
+                    </div>
+                    <div id="droppable" class="ui-widget-header">
+                        <p>Drop the red box here</p>
+                    </div>
+                </div>
+
+                <div class="practice-block">
+                    <div id="columns">
+                        <div class="column" id="column-a" draggable="true">First</div>
+                        <div class="column" id="column-b" draggable="true">Second</div>
+                    </div>
+                </div>
+
+                <div class="spacer-block">
+                    <p>Here are some other draggable elements ...</p>
+                </div>
+
+                <div class="practice-block">
+                    <div class="example-parent">
+                        <div class="example-origin">
+                            <div id="draggable-1" class="example-draggable" draggable="true" ondragstart="onDragStart(event);">Item 1</div>
+                            <div id="draggable-2" class="example-draggable" draggable="true" ondragstart="onDragStart(event);">Item 2</div>
+                            <div id="draggable-3" class="example-draggable" draggable="true" ondragstart="onDragStart(event);">Item 3</div>
+                            <div id="draggable-4" class="example-draggable" draggable="true" ondragstart="onDragStart(event);">Item 4</div>
+                        </div>
+                        <div class="example-dropzone" ondragover="onDragOver(event);" ondrop="onDrop(event);">Done</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <footer>
+            <p>Cypress Playground, by <a href="http://testerstories.com/" id="blog">Jeff Nyman</a>. For use with <a href="https://www.cypress.io/" id="app">Cypress</a> and other automation tools.</p>
+        </footer>
+
+        <div id="areas">
+            <p id="navlist" class="open">+</p>
+            <h2>Pages</h2>
+            <ul class="nav">
+                <li><a href="planets.html" id="planets">Planets</a></li>
+                <li><a href="stardates.html" id="stardates">Stardates</a></li>
+                <li><a href="warp.html" id="warp">Warp Travel</a></li>
+                <li><a href="warcraft.html" id="warp">Warcraft</a></li>
+                <li><a href="practice.html" id="warp">Practice</a></li>
+            </ul>
+        </div>
+
+        <script>
+            var dragSrcEl = null;
+
+            function handleDragStart(e) {
+                this.style.opacity = '0.4';
+
+                dragSrcEl = this;
+
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', this.innerHTML);
+            }
+
+            function handleDragOver(e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                }
+
+                e.dataTransfer.dropEffect = 'move';
+
+                return false;
+            }
+
+            function handleDragEnter(e) {
+                this.classList.add('over');
+            }
+
+            function handleDragLeave(e) {
+                this.classList.remove('over');
+            }
+
+            function handleDrop(e) {
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                }
+
+                if (dragSrcEl != this) {
+                    dragSrcEl.innerHTML = this.innerHTML;
+                    this.innerHTML = e.dataTransfer.getData('text/html');
+                }
+
+                return false;
+            }
+
+            function handleDragEnd(e) {
+                [].forEach.call(cols, function (col) {
+                    col.classList.remove('over');
+                });
+
+                this.style.opacity = '1';
+            }
+
+            var cols = document.querySelectorAll('#columns .column');
+
+            [].forEach.call(cols, function(col) {
+                col.addEventListener('dragstart', handleDragStart, false);
+                col.addEventListener('dragenter', handleDragEnter, false);
+                col.addEventListener('dragover', handleDragOver, false);
+                col.addEventListener('dragleave', handleDragLeave, false);
+                col.addEventListener('drop', handleDrop, false);
+                col.addEventListener('dragend', handleDragEnd, false);
+            });
+        </script>
+
+        <script src="vendor/jquery-3.6.0-min.js"></script>
+        <script src="vendor/jquery-ui.min.js"></script>
+        <script src="vendor/jquery.validate.min.js"></script>
+        <script src="vendor/bootstrap.min.js"></script>
+        <script src="js/site.js"></script>
+        <script src="js/practice.js"></script>
+
+        <script>
+            function onDragStart(event) {
+                event.dataTransfer.setData('text/plain', event.target.id);
+                event.currentTarget.style.backgroundColor = 'yellow';
+            }
+
+            function onDragOver(event) {
+                event.preventDefault();
+            }
+
+            function onDrop(event) {
+                const id = event.dataTransfer.getData('text');
+                const draggableElement = document.getElementById(id);
+                const dropzone = event.target;
+                dropzone.appendChild(draggableElement);
+                event.dataTransfer.clearData();
+            }
+        </script>
+    </body>
+</html>
