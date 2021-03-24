@@ -4,7 +4,7 @@
   "description": "Learning Examples for Cypress Automation",
   "main": "index.js",
   "scripts": {
-    "cy:open": "cypress run",
+    "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
   "keywords": [
