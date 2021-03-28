@@ -33,3 +33,9 @@ npm run cy:run
 ```
 
 I am using a directory called `e2e` for all example tests so that I can set them apart from the standard ones that Cypress provides as examples.
+
+If you want to run the tests for the `simple_json` area, you can do the following command:
+
+```
+npm run simple:json
+```
