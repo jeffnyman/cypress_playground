@@ -18,3 +18,15 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+// Version 4.x whitelisting
+// Cypress.Server.defaults({
+//     whitelist: (xhr) => {
+//         return true
+//     }
+// })
+
+// Version 5.x whitelisting
+Cypress.Server.defaults({
+    ignore: xhr => true
+})
